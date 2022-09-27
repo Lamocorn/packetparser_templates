@@ -137,7 +137,7 @@ debounceTimestamp := now.Ticks + transitionTime + 500;</WriteHueScriptPacketPars
     ELSE
         SENDHTTPREQUEST("light/0?turn=on&amp;transition=" + transitionTime + "&amp;gain=" + ROUND(Hb*100.0));
     END
-ELSEIF St = 0
+ELSE
     SENDHTTPREQUEST("light/0?turn=off&amp;transition=" + transitionTime);
 END
 
