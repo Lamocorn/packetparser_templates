@@ -213,6 +213,8 @@ END</ListenerScriptPacketParser>
             <ReadHueScriptPacketParser></ReadHueScriptPacketParser>
             <ReadSaturationScriptPacketParser></ReadSaturationScriptPacketParser>
             <ReadBrightnessScriptPacketParser></ReadBrightnessScriptPacketParser>
+			<MinColorTemperature>2700</MinColorTemperature>
+			<MaxColorTemperature>6500</MaxColorTemperature>
             <ReadCCTScriptPacketParser></ReadCCTScriptPacketParser>
             <WriteHueScriptPacketParser></WriteHueScriptPacketParser>
             <WriteSaturationScriptPacketParser>#do not send HUESAT when COLOR mode is active
@@ -241,10 +243,7 @@ IF ISNAN(Ct)
     RETURN(0);
 END
 
-VAR ctLocal := MAX(2700, Ct);
-ctLocal := MIN(ctLocal, 6500);
-
-VAR ctJson := "{\"id\":945,\"method\":\"set_ct_abx\",\"params\":[" + ctLocal + ", \"smooth\", 300]}";
+VAR ctJson := "{\"id\":945,\"method\":\"set_ct_abx\",\"params\":[" + Ct + ", \"smooth\", 300]}";
 SENDDATA(ctJson);
 
 debounce = 1;</WriteCCTScriptPacketParser>

@@ -72,6 +72,8 @@ END</ListenerScriptPacketParser>
             <CustomVariables>[{"Name":"jsonStatus","ValueTypeId":2,"NumericValue":0,"StringValue":""}]</CustomVariables>
             <ServiceAttributesScriptsPacketParser></ServiceAttributesScriptsPacketParser>
             <ServiceActionsScriptsPacketParser></ServiceActionsScriptsPacketParser>
+			<MinColorTemperature>3000</MinColorTemperature>
+			<MaxColorTemperature>6500</MaxColorTemperature>
             <ListenerScriptPacketParser>IF(INDEXOF(bulb1topic, "shellycolorbulb-deviceid") = 0)
     ADDERROR("Set correct 'bulb1topic' value in module variables. Topic format is 'shellycolorbulb-&lt;deviceid&gt;'. The Device ID can be found by opening url 'http://shellyIpAddress', in Settings -&gt; Device info.");
     RETURN(-1);
@@ -202,6 +204,8 @@ END</ListenerScriptPacketParser>
             <CustomVariables>[{"Name":"jsonStatus","ValueTypeId":2,"NumericValue":0,"StringValue":""}]</CustomVariables>
             <ServiceAttributesScriptsPacketParser></ServiceAttributesScriptsPacketParser>
             <ServiceActionsScriptsPacketParser></ServiceActionsScriptsPacketParser>
+			<MinColorTemperature>3000</MinColorTemperature>
+			<MaxColorTemperature>6500</MaxColorTemperature>
             <ListenerScriptPacketParser>IF(INDEXOF(bulb2topic, "shellycolorbulb-deviceid") = 0)
     ADDERROR("Set correct 'bulb2topic' value in module variables. Topic format is 'shellycolorbulb-&lt;deviceid&gt;'. The Device ID can be found by opening url 'http://shellyIpAddress', in Settings -&gt; Device info.");
     RETURN(-1);
@@ -332,6 +336,8 @@ END</ListenerScriptPacketParser>
             <CustomVariables>[{"Name":"jsonStatus","ValueTypeId":2,"NumericValue":0,"StringValue":""}]</CustomVariables>
             <ServiceAttributesScriptsPacketParser></ServiceAttributesScriptsPacketParser>
             <ServiceActionsScriptsPacketParser></ServiceActionsScriptsPacketParser>
+			<MinColorTemperature>3000</MinColorTemperature>
+			<MaxColorTemperature>6500</MaxColorTemperature>
             <ListenerScriptPacketParser>IF(INDEXOF(bulb3topic, "shellycolorbulb-deviceid") = 0)
     ADDERROR("Set correct 'bulb3topic' value in module variables. Topic format is 'shellycolorbulb-&lt;deviceid&gt;'. The Device ID can be found by opening url 'http://shellyIpAddress', in Settings -&gt; Device info.");
     RETURN(-1);
@@ -462,6 +468,8 @@ END</ListenerScriptPacketParser>
             <CustomVariables>[{"Name":"jsonStatus","ValueTypeId":2,"NumericValue":0,"StringValue":""}]</CustomVariables>
             <ServiceAttributesScriptsPacketParser></ServiceAttributesScriptsPacketParser>
             <ServiceActionsScriptsPacketParser></ServiceActionsScriptsPacketParser>
+			<MinColorTemperature>3000</MinColorTemperature>
+			<MaxColorTemperature>6500</MaxColorTemperature>
             <ListenerScriptPacketParser>IF(INDEXOF(bulb4topic, "shellycolorbulb-deviceid") = 0)
     ADDERROR("Set correct 'bulb4topic' value in module variables. Topic format is 'shellycolorbulb-&lt;deviceid&gt;'. The Device ID can be found by opening url 'http://shellyIpAddress', in Settings -&gt; Device info.");
     RETURN(-1);
@@ -592,6 +600,8 @@ END</ListenerScriptPacketParser>
             <CustomVariables>[{"Name":"jsonStatus","ValueTypeId":2,"NumericValue":0,"StringValue":""}]</CustomVariables>
             <ServiceAttributesScriptsPacketParser></ServiceAttributesScriptsPacketParser>
             <ServiceActionsScriptsPacketParser></ServiceActionsScriptsPacketParser>
+			<MinColorTemperature>3000</MinColorTemperature>
+			<MaxColorTemperature>6500</MaxColorTemperature>
             <ListenerScriptPacketParser>IF(INDEXOF(bulb5topic, "shellycolorbulb-deviceid") = 0)
     ADDERROR("Set correct 'bulb5topic' value in module variables. Topic format is 'shellycolorbulb-&lt;deviceid&gt;'. The Device ID can be found by opening url 'http://shellyIpAddress', in Settings -&gt; Device info.");
     RETURN(-1);

@@ -53,6 +53,8 @@ END</ReadScriptPacketParser>
             <ServiceAttributesScriptsPacketParser></ServiceAttributesScriptsPacketParser>
             <ServiceActionsScriptsPacketParser></ServiceActionsScriptsPacketParser>
             <ShouldDoPeriodicWrite>False</ShouldDoPeriodicWrite>
+			<MinColorTemperature>3000</MinColorTemperature>
+			<MaxColorTemperature>6500</MaxColorTemperature>
             <ReadHueScriptPacketParser>VAR now := NOW();
 
 IF now.Ticks &lt; debounceTimestamp
@@ -166,7 +168,8 @@ debounceTimestamp := now.Ticks + transitionTime + 500;</WriteCCTScriptPacketPars
             <CustomVariables />
             <ServiceAttributesScriptsPacketParser></ServiceAttributesScriptsPacketParser>
             <ServiceActionsScriptsPacketParser></ServiceActionsScriptsPacketParser>
-            <ReadTotalConsumptionScriptPacketParser>IF LENGTH(jsonStatus) = 0
+            <ReadTotalConsumptionScriptPacketParser>ADDINFO("To enable power monitoring, open device settings in Shelly app or web browser and configure device model in Settings-&gt;Device Model");
+IF LENGTH(jsonStatus) = 0
     RETURN(NaN);
 END
 
@@ -183,13 +186,9 @@ total / 60000.0</ReadTotalConsumptionScriptPacketParser>
     RETURN(NaN);
 END
 
-VAR power := PARSEJSON(jsonStatus, "$.meters[0].power");
-BOOL isOn := PARSEJSON(jsonStatus, "$.lights[0].ison");
+VAR power := PARSEJSON(jsonStatus, "$.meters[0].power", 1);
 
 IF ISNULL(power)
-    RETURN(NaN);
-ELSEIF ison AND power=0
-    ADDWARNING("To enable power monitoring, open device settings in Shelly app or web browser and configure device model in Settings-&gt;Device Model");
     RETURN(NaN);
 END
 
