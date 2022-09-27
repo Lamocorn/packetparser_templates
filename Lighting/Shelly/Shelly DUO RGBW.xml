@@ -157,6 +157,46 @@ debounceTimestamp := now.Ticks + transitionTime + 500;</WriteCCTScriptPacketPars
             <IconId>0</IconId>
           </DeviceProperties>
         </Device>
+		<Device>
+		  <Name>Shelly DUO RGBW Electric meter</Name>
+          <Model>PacketParserElectricityMeter</Model>
+          <DeviceProperties>
+            <ReadScriptPacketParser></ReadScriptPacketParser>
+            <InternalPollInterval>2500</InternalPollInterval>
+            <CustomVariables />
+            <ServiceAttributesScriptsPacketParser></ServiceAttributesScriptsPacketParser>
+            <ServiceActionsScriptsPacketParser></ServiceActionsScriptsPacketParser>
+            <ReadTotalConsumptionScriptPacketParser>IF LENGTH(jsonStatus) = 0
+    RETURN(NaN);
+END
+
+VAR power := PARSEJSON(jsonStatus, "$.meters[0].power");
+VAR total := PARSEJSON(jsonStatus, "$.meters[0].total");
+BOOL isOn := PARSEJSON(jsonStatus, "$.lights[0].ison");
+
+IF ISNULL(power) OR ISNULL(total) OR (ison AND power=0)
+    RETURN(NaN);
+END
+
+total / 60000.0</ReadTotalConsumptionScriptPacketParser>
+            <ReadDemandScriptPacketParser>IF LENGTH(jsonStatus) = 0
+    RETURN(NaN);
+END
+
+VAR power := PARSEJSON(jsonStatus, "$.meters[0].power");
+BOOL isOn := PARSEJSON(jsonStatus, "$.lights[0].ison");
+
+IF ISNULL(power)
+    RETURN(NaN);
+ELSEIF ison AND power=0
+    ADDWARNING("To enable power monitoring, open device settings in Shelly app or web browser and configure device model in Settings-&gt;Device Model");
+    RETURN(NaN);
+END
+
+power / 1000.0</ReadDemandScriptPacketParser>
+            <Calibration>0</Calibration>
+          </DeviceProperties>
+        </Device>
       </Devices>
     </Module>
   </Template>
