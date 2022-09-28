@@ -51,7 +51,6 @@ END
 
 VAR data := TOSTRING(RECEIVEDBYTES);
 VAR topic := PARSEJSON(data, "Topic");
-VAR ignore := false;
 
 IF INDEXOF(topic, "shellies/" + bulb1topic + "/light/0/power") = 0
     Ed := TODOUBLE(PARSEJSON(data, "Payload")) / 1000.0;
@@ -95,7 +94,7 @@ END
 BOOL ison := PARSEJSON(json, "$.ison", 1);
 VAR mode := PARSEJSON(json, "$.mode", 1);
 
-IF ISNULL(mode) OR ISNULL(mode)
+IF ISNULL(mode)
     RETURN(0);
 END
 
@@ -183,7 +182,6 @@ END
 
 VAR data := TOSTRING(RECEIVEDBYTES);
 VAR topic := PARSEJSON(data, "Topic");
-VAR ignore := false;
 
 IF INDEXOF(topic, "shellies/" + bulb2topic + "/light/0/power") = 0
     Ed := TODOUBLE(PARSEJSON(data, "Payload")) / 1000.0;
@@ -227,7 +225,7 @@ END
 BOOL ison := PARSEJSON(json, "$.ison", 1);
 VAR mode := PARSEJSON(json, "$.mode", 1);
 
-IF ISNULL(mode) OR ISNULL(mode)
+IF ISNULL(mode)
     RETURN(0);
 END
 
@@ -315,7 +313,6 @@ END
 
 VAR data := TOSTRING(RECEIVEDBYTES);
 VAR topic := PARSEJSON(data, "Topic");
-VAR ignore := false;
 
 IF INDEXOF(topic, "shellies/" + bulb3topic + "/light/0/power") = 0
     Ed := TODOUBLE(PARSEJSON(data, "Payload")) / 1000.0;
@@ -359,7 +356,7 @@ END
 BOOL ison := PARSEJSON(json, "$.ison", 1);
 VAR mode := PARSEJSON(json, "$.mode", 1);
 
-IF ISNULL(mode) OR ISNULL(mode)
+IF ISNULL(mode)
     RETURN(0);
 END
 
@@ -447,7 +444,6 @@ END
 
 VAR data := TOSTRING(RECEIVEDBYTES);
 VAR topic := PARSEJSON(data, "Topic");
-VAR ignore := false;
 
 IF INDEXOF(topic, "shellies/" + bulb4topic + "/light/0/power") = 0
     Ed := TODOUBLE(PARSEJSON(data, "Payload")) / 1000.0;
@@ -491,7 +487,7 @@ END
 BOOL ison := PARSEJSON(json, "$.ison", 1);
 VAR mode := PARSEJSON(json, "$.mode", 1);
 
-IF ISNULL(mode) OR ISNULL(mode)
+IF ISNULL(mode)
     RETURN(0);
 END
 
@@ -579,7 +575,6 @@ END
 
 VAR data := TOSTRING(RECEIVEDBYTES);
 VAR topic := PARSEJSON(data, "Topic");
-VAR ignore := false;
 
 IF INDEXOF(topic, "shellies/" + bulb5topic + "/light/0/power") = 0
     Ed := TODOUBLE(PARSEJSON(data, "Payload")) / 1000.0;
@@ -623,7 +618,7 @@ END
 BOOL ison := PARSEJSON(json, "$.ison", 1);
 VAR mode := PARSEJSON(json, "$.mode", 1);
 
-IF ISNULL(mode) OR ISNULL(mode)
+IF ISNULL(mode)
     RETURN(0);
 END
 
