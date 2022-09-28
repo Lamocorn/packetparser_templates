@@ -138,18 +138,18 @@ END
 VAR topic := "shellies/" + bulb1topic + "/color/0/set";
 VAR rgbColor := HSVTORGB(Hd, Sa, 1);
 
-VAR data := "{\"mode\": \"color\",\"transition\":300,\"red\":" + rgbColor.red + ",\"green\":" + rgbColor.green + ",\"blue\":" + rgbColor.blue + "}";
-MQTTPUBLISH(topic, data);
-</WriteHueScriptPacketParser>
+VAR data := "{\"mode\": \"color\", \"gain\": " + ROUND(Hb*100.0) + ", \"transition\":300,\"red\":" + rgbColor.red + ",\"green\":" + rgbColor.green + ",\"blue\":" + rgbColor.blue + "}";
+
+MQTTPUBLISH(topic, data);</WriteHueScriptPacketParser>
             <WriteSaturationScriptPacketParser />
             <WriteBrightnessScriptPacketParser>IF St &gt; 0.5
     VAR topic := "shellies/" + bulb1topic + "/color/0/set";
-    VAR mode := PARSEJSON(jsonStatus, "$.mode", 1);
     
-    IF mode = "white"
-    MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"brightness\": " + ROUND(Hb*100.0) + "}");
-    ELSE
+	IF ISNAN(Ct)
         MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"gain\": " + ROUND(Hb*100.0) + "}");
+    ELSE
+        MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"brightness\": " + ROUND(Hb*100.0) + "}");
+        
     END
 ELSE
     MQTTPUBLISH("shellies/" + bulb1topic + "/color/0/command", "off");
@@ -159,7 +159,8 @@ END</WriteBrightnessScriptPacketParser>
 END
 
 VAR topic := "shellies/" + bulb1topic + "/color/0/set";
-MQTTPUBLISH(topic, "{\"mode\": \"white\", \"transition\": 300, \"temp\":" + Ct + "}");
+
+MQTTPUBLISH(topic, "{\"mode\": \"white\", \"brightness\": " + ROUND(Hb*100.0) + ", \"transition\": 300, \"temp\":" + Ct + "}");
 </WriteCCTScriptPacketParser>
             <IconId>0</IconId>
           </DeviceProperties>
@@ -269,18 +270,19 @@ END
 VAR topic := "shellies/" + bulb2topic + "/color/0/set";
 VAR rgbColor := HSVTORGB(Hd, Sa, 1);
 
-VAR data := "{\"mode\": \"color\",\"transition\":300,\"red\":" + rgbColor.red + ",\"green\":" + rgbColor.green + ",\"blue\":" + rgbColor.blue + "}";
+VAR data := "{\"mode\": \"color\", \"gain\": " + ROUND(Hb*100.0) + ", \"transition\":300,\"red\":" + rgbColor.red + ",\"green\":" + rgbColor.green + ",\"blue\":" + rgbColor.blue + "}";
+
 MQTTPUBLISH(topic, data);
 </WriteHueScriptPacketParser>
             <WriteSaturationScriptPacketParser />
             <WriteBrightnessScriptPacketParser>IF St &gt; 0.5
     VAR topic := "shellies/" + bulb2topic + "/color/0/set";
-    VAR mode := PARSEJSON(jsonStatus, "$.mode", 1);
     
-    IF mode = "white"
-    MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"brightness\": " + ROUND(Hb*100.0) + "}");
-    ELSE
+	IF ISNAN(Ct)
         MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"gain\": " + ROUND(Hb*100.0) + "}");
+    ELSE
+        MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"brightness\": " + ROUND(Hb*100.0) + "}");
+        
     END
 ELSE
     MQTTPUBLISH("shellies/" + bulb2topic + "/color/0/command", "off");
@@ -290,7 +292,8 @@ END</WriteBrightnessScriptPacketParser>
 END
 
 VAR topic := "shellies/" + bulb2topic + "/color/0/set";
-MQTTPUBLISH(topic, "{\"mode\": \"white\", \"transition\": 300, \"temp\":" + Ct + "}");
+
+MQTTPUBLISH(topic, "{\"mode\": \"white\", \"brightness\": " + ROUND(Hb*100.0) + ", \"transition\": 300, \"temp\":" + Ct + "}");
 </WriteCCTScriptPacketParser>
             <IconId>0</IconId>
           </DeviceProperties>
@@ -400,18 +403,19 @@ END
 VAR topic := "shellies/" + bulb3topic + "/color/0/set";
 VAR rgbColor := HSVTORGB(Hd, Sa, 1);
 
-VAR data := "{\"mode\": \"color\",\"transition\":300,\"red\":" + rgbColor.red + ",\"green\":" + rgbColor.green + ",\"blue\":" + rgbColor.blue + "}";
+VAR data := "{\"mode\": \"color\", \"gain\": " + ROUND(Hb*100.0) + ", \"transition\":300,\"red\":" + rgbColor.red + ",\"green\":" + rgbColor.green + ",\"blue\":" + rgbColor.blue + "}";
+
 MQTTPUBLISH(topic, data);
 </WriteHueScriptPacketParser>
             <WriteSaturationScriptPacketParser />
             <WriteBrightnessScriptPacketParser>IF St &gt; 0.5
     VAR topic := "shellies/" + bulb3topic + "/color/0/set";
-    VAR mode := PARSEJSON(jsonStatus, "$.mode", 1);
     
-    IF mode = "white"
-    MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"brightness\": " + ROUND(Hb*100.0) + "}");
-    ELSE
+	IF ISNAN(Ct)
         MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"gain\": " + ROUND(Hb*100.0) + "}");
+    ELSE
+        MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"brightness\": " + ROUND(Hb*100.0) + "}");
+        
     END
 ELSE
     MQTTPUBLISH("shellies/" + bulb3topic + "/color/0/command", "off");
@@ -421,7 +425,8 @@ END</WriteBrightnessScriptPacketParser>
 END
 
 VAR topic := "shellies/" + bulb3topic + "/color/0/set";
-MQTTPUBLISH(topic, "{\"mode\": \"white\", \"transition\": 300, \"temp\":" + Ct + "}");
+
+MQTTPUBLISH(topic, "{\"mode\": \"white\", \"brightness\": " + ROUND(Hb*100.0) + ", \"transition\": 300, \"temp\":" + Ct + "}");
 </WriteCCTScriptPacketParser>
             <IconId>0</IconId>
           </DeviceProperties>
@@ -531,18 +536,19 @@ END
 VAR topic := "shellies/" + bulb4topic + "/color/0/set";
 VAR rgbColor := HSVTORGB(Hd, Sa, 1);
 
-VAR data := "{\"mode\": \"color\",\"transition\":300,\"red\":" + rgbColor.red + ",\"green\":" + rgbColor.green + ",\"blue\":" + rgbColor.blue + "}";
+VAR data := "{\"mode\": \"color\", \"gain\": " + ROUND(Hb*100.0) + ", \"transition\":300,\"red\":" + rgbColor.red + ",\"green\":" + rgbColor.green + ",\"blue\":" + rgbColor.blue + "}";
+
 MQTTPUBLISH(topic, data);
 </WriteHueScriptPacketParser>
             <WriteSaturationScriptPacketParser />
             <WriteBrightnessScriptPacketParser>IF St &gt; 0.5
     VAR topic := "shellies/" + bulb4topic + "/color/0/set";
-    VAR mode := PARSEJSON(jsonStatus, "$.mode", 1);
     
-    IF mode = "white"
-    MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"brightness\": " + ROUND(Hb*100.0) + "}");
-    ELSE
+	IF ISNAN(Ct)
         MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"gain\": " + ROUND(Hb*100.0) + "}");
+    ELSE
+        MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"brightness\": " + ROUND(Hb*100.0) + "}");
+        
     END
 ELSE
     MQTTPUBLISH("shellies/" + bulb4topic + "/color/0/command", "off");
@@ -552,7 +558,8 @@ END</WriteBrightnessScriptPacketParser>
 END
 
 VAR topic := "shellies/" + bulb4topic + "/color/0/set";
-MQTTPUBLISH(topic, "{\"mode\": \"white\", \"transition\": 300, \"temp\":" + Ct + "}");
+
+MQTTPUBLISH(topic, "{\"mode\": \"white\", \"brightness\": " + ROUND(Hb*100.0) + ", \"transition\": 300, \"temp\":" + Ct + "}");
 </WriteCCTScriptPacketParser>
             <IconId>0</IconId>
           </DeviceProperties>
@@ -662,18 +669,19 @@ END
 VAR topic := "shellies/" + bulb5topic + "/color/0/set";
 VAR rgbColor := HSVTORGB(Hd, Sa, 1);
 
-VAR data := "{\"mode\": \"color\",\"transition\":300,\"red\":" + rgbColor.red + ",\"green\":" + rgbColor.green + ",\"blue\":" + rgbColor.blue + "}";
+VAR data := "{\"mode\": \"color\", \"gain\": " + ROUND(Hb*100.0) + ", \"transition\":300,\"red\":" + rgbColor.red + ",\"green\":" + rgbColor.green + ",\"blue\":" + rgbColor.blue + "}";
+
 MQTTPUBLISH(topic, data);
 </WriteHueScriptPacketParser>
             <WriteSaturationScriptPacketParser />
             <WriteBrightnessScriptPacketParser>IF St &gt; 0.5
     VAR topic := "shellies/" + bulb5topic + "/color/0/set";
-    VAR mode := PARSEJSON(jsonStatus, "$.mode", 1);
     
-    IF mode = "white"
-    MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"brightness\": " + ROUND(Hb*100.0) + "}");
-    ELSE
+	IF ISNAN(Ct)
         MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"gain\": " + ROUND(Hb*100.0) + "}");
+    ELSE
+        MQTTPUBLISH(topic, "{\"turn\": \"on\", \"transition\": 300, \"brightness\": " + ROUND(Hb*100.0) + "}");
+        
     END
 ELSE
     MQTTPUBLISH("shellies/" + bulb5topic + "/color/0/command", "off");
@@ -683,7 +691,8 @@ END</WriteBrightnessScriptPacketParser>
 END
 
 VAR topic := "shellies/" + bulb5topic + "/color/0/set";
-MQTTPUBLISH(topic, "{\"mode\": \"white\", \"transition\": 300, \"temp\":" + Ct + "}");
+
+MQTTPUBLISH(topic, "{\"mode\": \"white\", \"brightness\": " + ROUND(Hb*100.0) + ", \"transition\": 300, \"temp\":" + Ct + "}");
 </WriteCCTScriptPacketParser>
             <IconId>0</IconId>
           </DeviceProperties>
