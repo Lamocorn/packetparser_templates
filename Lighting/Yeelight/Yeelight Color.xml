@@ -179,7 +179,7 @@ IF(method = "props")
          IF(ISNULL(brightJson))
             SENDDATA("{\"id\":952, \"method\":\"get_prop\", \"params\":[\"bright\"]}");
          END
-      ELSEIF(onOffStr = "off")
+      ELSEIF(onOffJson = "off")
          Hb := 0;
          St := 0;
       END
@@ -220,7 +220,7 @@ IF !ISNAN(Ct)
     RETURN(0);
 END
 
-VAR hueSatJson := "{\"id\":943,\"method\":\"set_hsv\",\"params\":[" + ROUND(Hd) + ", " + ROUND(Sa*100) + ", \"smooth\", 300]}";
+VAR hueSatJson := "{\"id\":941,\"method\":\"set_power\",\"params\":[\"on\", \"smooth\", 300]}\r\n{\"id\":943,\"method\":\"set_hsv\",\"params\":[" + ROUND(MOD(Hd, 360)) + ", " + ROUND(Sa*100) + ", \"smooth\", 300]}";
 
 SENDDATA(hueSatJson);
 debounce := 1;</WriteSaturationScriptPacketParser>
@@ -238,7 +238,7 @@ IF ISNAN(Ct)
     RETURN(0);
 END
 
-VAR ctJson := "{\"id\":944,\"method\":\"set_ct_abx\",\"params\":[" + Ct + ", \"smooth\", 300]}";
+VAR ctJson := "{\"id\":941,\"method\":\"set_power\",\"params\":[\"on\", \"smooth\", 300]}\r\n{\"id\":944,\"method\":\"set_ct_abx\",\"params\":[" + Ct + ", \"smooth\", 300]}";
 SENDDATA(ctJson);
 
 debounce := 1;</WriteCCTScriptPacketParser>
